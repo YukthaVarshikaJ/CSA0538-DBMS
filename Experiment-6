@@ -61,10 +61,73 @@ mysql> select *from course;
 
 #Range Between:
 
-mysql> use course;
+
+mysql> create database Course_marks;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| course_marks       |
+| mysql              |
+| performance_schema |
+| test               |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use Course_marks;
 Database changed
-mysql> select Course_code from course where Room_no ='between 3 and 4';
-Empty set, 1 warning (0.00 sec)
+mysql> create table Course_marks(S_no int(2),Reg_no varchar(10),Course_no varchar(10),Marks int(3));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc Course_marks;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| S_no      | int(2)      | YES  |     | NULL    |       |
+| Reg_no    | varchar(10) | YES  |     | NULL    |       |
+| Course_no | varchar(10) | YES  |     | NULL    |       |
+| Marks     | int(3)      | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> insert into Course_marks value(1,192221042,'C001',78);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Course_marks value(2,192221043,'C008',85);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Course_marks value(3,192221047,'C058',93);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Course_marks value(4,192221046,'C178',91);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Course_marks value(5,192221047,'C201',65);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from Course_marks;
++------+-----------+-----------+-------+
+| S_no | Reg_no    | Course_no | Marks |
++------+-----------+-----------+-------+
+|    1 | 192221042 | C001      |    78 |
+|    2 | 192221043 | C008      |    85 |
+|    3 | 192221047 | C058      |    93 |
+|    4 | 192221046 | C178      |    91 |
+|    5 | 192221047 | C201      |    65 |
++------+-----------+-----------+-------+
+5 rows in set (0.00 sec)
+
+mysql>  select Course_no from Course_marks where Marks Between 90 AND 100;
++-----------+
+| Course_no |
++-----------+
+| C058      |
+| C178      |
++-----------+
+2 rows in set (0.00 sec)
 
 
 #Create data of student:
